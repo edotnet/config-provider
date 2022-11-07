@@ -1,25 +1,23 @@
 import type { AxiosInstance } from "axios";
-import { inject, provide } from "vue";
-import { HTTP_PROVIDER_SYMBOL, type IAPIResponse } from "../http/types";
-import type { ID } from "../types";
-import {
-  TEMPLATES_PROVIDER_SYMBOL,
-  type CreateTemplateResponse,
-  type GetAllTemplatesResponse,
-  type GetTemplateResponse,
-  type ITemplate,
+import { inject, provide, type InjectionKey } from "vue";
+import { HTTP_PROVIDER_SYMBOL } from "../http";
+import type { IAPIResponse } from "../http/types";
+import type {
+  CreateTemplateResponse,
+  GetTemplateResponse,
+  ITemplate,
 } from "./types";
+
+export const TEMPLATES_PROVIDER_SYMBOL = Symbol(
+  "TEMPLATES_PROVIDER"
+) as InjectionKey<TemplateProvider>;
 
 export const API_ENDPOINT = "/api/templates";
 
 export class TemplateProvider {
   constructor(private httpAdapter: AxiosInstance) {}
 
-  public getTemplateById(id: ID): Promise<IAPIResponse<GetTemplateResponse>> {
-    return this.httpAdapter.get(`${API_ENDPOINT}/${id}`);
-  }
-
-  public getTemplates(): Promise<IAPIResponse<GetAllTemplatesResponse>> {
+  public getTemplate(): Promise<IAPIResponse<GetTemplateResponse>> {
     return this.httpAdapter.get(API_ENDPOINT);
   }
 

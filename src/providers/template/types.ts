@@ -1,10 +1,4 @@
-import type { InjectionKey } from "vue";
-import type { TemplateProvider } from ".";
 import type { ID } from "../types";
-
-export const TEMPLATES_PROVIDER_SYMBOL = Symbol(
-  "TEMPLATES_PROVIDER"
-) as InjectionKey<TemplateProvider>;
 
 export type ITemplateAttrbiuteType =
   | "text"
@@ -30,9 +24,5 @@ export interface ITemplate {
 }
 
 export type GetTemplateResponse = ITemplate;
-
-export type GetAllTemplatesResponse = {
-  templates: ITemplate[];
-};
 
 export type CreateTemplateResponse = {};

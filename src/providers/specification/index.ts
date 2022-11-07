@@ -1,14 +1,18 @@
 import type { AxiosInstance } from "axios";
-import { inject, provide } from "vue";
-import { HTTP_PROVIDER_SYMBOL, type IAPIResponse } from "../http/types";
+import { inject, provide, type InjectionKey } from "vue";
+import { HTTP_PROVIDER_SYMBOL } from "../http";
+import type { IAPIResponse } from "../http/types";
 import type { ID } from "../types";
-import {
-  SPECIFICATION_PROVIDER_SYMBOL,
-  type CreateSpecificationResponse,
-  type GetAllSpecificationsResponse,
-  type GetSpecificationResponse,
-  type ISpecification,
+import type {
+  CreateSpecificationResponse,
+  GetAllSpecificationsResponse,
+  GetSpecificationResponse,
+  ISpecification,
 } from "./types";
+
+export const SPECIFICATION_PROVIDER_SYMBOL = Symbol(
+  "SPECIFICATION_PROVIDER"
+) as InjectionKey<SpecificationProvider>;
 
 export const API_ENDPOINT = "/api/specifications";
 

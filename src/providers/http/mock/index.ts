@@ -1,6 +1,8 @@
 import type { AxiosInstance } from "axios";
-import MockAdapter from "axios-mock-adapter/types";
 import type { IMockRequest } from "./types";
+import templateRequests from "./template";
+import specificationRequests from "./specification";
+import MockAdapter from "axios-mock-adapter";
 
 const mockedEntities = new Map<string, IMockRequest[]>();
 
@@ -8,6 +10,8 @@ export const registerMockRequests = (
   entity: string,
   mockRequests: IMockRequest[]
 ) => {
+  console.log(1111);
+
   if (mockedEntities.has(entity)) {
     console.warn(`AXIOS MOCK ADAPTER: Duplice mock for entity - ${entity}.`);
     return;
@@ -36,3 +40,6 @@ export const enableMock = (axios: AxiosInstance) => {
     });
   });
 };
+
+registerMockRequests("Template", templateRequests);
+registerMockRequests("Specification", specificationRequests);

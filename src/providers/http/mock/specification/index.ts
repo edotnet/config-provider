@@ -2,18 +2,17 @@ import type {
   GetAllSpecificationsResponse,
   GetSpecificationResponse,
 } from "@/providers/specification/types";
-import { API_ENDPOINT } from "@/providers/specification";
-import { registerMockRequests } from "..";
 import type { IMockRequest } from "../types";
 
 const getRequest: IMockRequest<GetSpecificationResponse> = {
   type: "onGet",
-  matcher: `${API_ENDPOINT}/1`,
+  matcher: `/api/specifications/1`,
   response: {
     status: 200,
     data: {
       id: "1",
       templateId: "1",
+      name: "Sport",
 
       attributes: {
         Engine: "V6 3.5L",
@@ -29,7 +28,7 @@ const getRequest: IMockRequest<GetSpecificationResponse> = {
 
 const getAllRequest: IMockRequest<GetAllSpecificationsResponse> = {
   type: "onGet",
-  matcher: API_ENDPOINT,
+  matcher: `/api/specifications`,
   response: {
     status: 200,
     data: {
@@ -37,6 +36,7 @@ const getAllRequest: IMockRequest<GetAllSpecificationsResponse> = {
         {
           id: "1",
           templateId: "1",
+          name: "Sport",
 
           attributes: {
             Engine: "V6 3.5L",
@@ -52,4 +52,4 @@ const getAllRequest: IMockRequest<GetAllSpecificationsResponse> = {
   },
 };
 
-registerMockRequests("Specification", [getRequest, getAllRequest]);
+export default [getRequest, getAllRequest];

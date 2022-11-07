@@ -1,18 +1,20 @@
 <script setup lang="ts">
+import type { ISpecification } from "../../providers/specification/types";
+import SpecificationListItem from "./SpecificationListItem.vue";
+
 defineProps<{
-  msg: string;
+  specifications: ISpecification[];
 }>();
 </script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-      What's next?
-    </h3>
+  <div>
+    <specification-list-item
+      class="q-mt-md"
+      v-for="s in specifications"
+      :key="s.id"
+      :specification="s"
+    ></specification-list-item>
   </div>
 </template>
 
